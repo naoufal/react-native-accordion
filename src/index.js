@@ -41,7 +41,7 @@ var Accordion = React.createClass({
     };
   },
 
-  toggleAccordion() {
+  _toggleAccordion() {
     this.state.is_visible = !this.state.is_visible;
 
     this.tweenState('height', {
@@ -51,7 +51,7 @@ var Accordion = React.createClass({
     });
   },
 
-  getContentHeight() {
+  _getContentHeight() {
     this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
       // Sets content height in state
       this.setState({content_height: height});
@@ -62,16 +62,20 @@ var Accordion = React.createClass({
     // Gets content height when component mounts
     // without setTimeout, measure returns 0 for every value.
     // See https://github.com/facebook/react-native/issues/953
-    setTimeout(this.getContentHeight);
+    setTimeout(this._getContentHeight);
   },
 
   render() {
     return (
       /*jshint ignore:start */
-      <View>
+      <View
+        style={{
+          overflow: 'hidden'
+        }}
+      >
         <TouchableHighlight
           ref="AccordionHeader"
-          onPress={this.toggleAccordion}
+          onPress={this._toggleAccordion}
           underlayColor={this.props.underlayColor}
           style={this.props.style}
         >
