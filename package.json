@@ -1,6 +1,6 @@
 {
   "name": "react-native-accordion",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An Accordion Component for React Native",
   "main": "index.ios.js",
   "scripts": {
@@ -11,8 +11,8 @@
     "url": "https://github.com/naoufal/react-native-accordion.git"
   },
   "keywords": [
-    "react",
     "react-native",
+    "react",
     "native",
     "accordion",
     "react-component"
