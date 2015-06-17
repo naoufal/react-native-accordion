@@ -1,6 +1,6 @@
 {
   "name": "react-native-accordion",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "An Accordion Component for React Native",
   "main": "index.ios.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "react",
     "native",
     "accordion",
-    "react-component"
+    "react-component",
+    "react-native-component"
   ],
   "author": "Naoufal Kadhom <naoufalkadhom@gmail.com> (https://github.com/naoufal)",
   "license": "ISC",
