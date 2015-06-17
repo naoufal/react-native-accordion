@@ -1,5 +1,6 @@
 # react-native-accordion
 [![npm](https://img.shields.io/npm/v/react-native-accordion.svg?style=flat-square)](https://www.npmjs.com/package/react-native-accordion)
+[![npm downloads](https://img.shields.io/npm/dm/react-native-accordion.svg?style=flat-square)](https://www.npmjs.com/package/react-native-accordion)
 [![Code Climate](https://img.shields.io/codeclimate/github/naoufal/react-native-accordion.svg?style=flat-square)](https://codeclimate.com/github/naoufal/react-native-accordion)
 
 __`react-native-accordion`__ is an easy to use Accordion component for [React Native](https://facebook.github.io/react-native/) app.
