@@ -43,11 +43,11 @@ var Accordion = React.createClass({
   },
 
   close() {
-    this.state.is_visible && this._toggleAccordion();
+    this.state.is_visible && this.toggle();
   },
 
   open() {
-    !this.state.is_visible && this._toggleAccordion();
+    !this.state.is_visible && this.toggle();
   },
 
   toggle() {
