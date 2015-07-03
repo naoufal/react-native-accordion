@@ -79,6 +79,14 @@ The following props can be used to modify the Accordion's style and/or behaviour
 |__`underlayColor`__|_String_|Optional|`#000`|The underlay color of the [TouchableHighlight](https://facebook.github.io/react-native/docs/touchablehighlight.html).
 |__`style`__|_Object_|Optional|`{}`|The styles you want to set on the accordion element.
 
+## Methods
+The following methods can be used to open and close the accordion:
+
+| Method | Parameters | Note |
+|---|---|---|
+|__`open`__|`N/A`|Open the accordion.
+|__`close`__|`N/A`|Close the accordion.
+|__`toggle`__|`N/A`|Toggle the accordion.
 
 ## License
 Copyright (c) 2015, Naoufal Kadhom

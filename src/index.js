@@ -42,7 +42,15 @@ var Accordion = React.createClass({
     };
   },
 
-  _toggleAccordion() {
+  close() {
+    this.state.is_visible && this.toggle();
+  },
+
+  open() {
+    !this.state.is_visible && this.toggle();
+  },
+
+  toggle() {
     this.state.is_visible = !this.state.is_visible;
 
     this.tweenState('height', {
@@ -50,6 +58,10 @@ var Accordion = React.createClass({
       duration: this.props.animationDuration,
       endValue: this.state.height === 0 ? this.state.content_height : 0
     });
+  },
+
+  _onPress() {
+    this.toggle();
 
     if (this.props.onPress) {
       this.props.onPress.call(this);
@@ -80,7 +92,7 @@ var Accordion = React.createClass({
       >
         <TouchableHighlight
           ref="AccordionHeader"
-          onPress={this._toggleAccordion}
+          onPress={this._onPress}
           underlayColor={this.props.underlayColor}
           style={this.props.style}
         >
