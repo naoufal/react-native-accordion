@@ -1,4 +1,4 @@
-# react-native-accordion
+# React Native Accordion
 [![npm](https://img.shields.io/npm/v/react-native-accordion.svg?style=flat-square)](https://www.npmjs.com/package/react-native-accordion)
 [![npm downloads](https://img.shields.io/npm/dm/react-native-accordion.svg?style=flat-square)](https://www.npmjs.com/package/react-native-accordion)
 [![Code Climate](https://img.shields.io/codeclimate/github/naoufal/react-native-accordion.svg?style=flat-square)](https://codeclimate.com/github/naoufal/react-native-accordion)
@@ -89,7 +89,7 @@ The following methods can be used to open and close the accordion:
 |__`toggle`__|`N/A`|Toggle the accordion.
 
 ## License
-Copyright (c) 2015, Naoufal Kadhom
+Copyright (c) 2015, [Naoufal Kadhom](http://naoufal.com)
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
