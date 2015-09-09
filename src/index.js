@@ -69,10 +69,12 @@ var Accordion = React.createClass({
   },
 
   _getContentHeight() {
-    this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
-      // Sets content height in state
-      this.setState({content_height: height});
-    });
+    if (this.refs.AccordionContent) {
+      this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
+        // Sets content height in state
+        this.setState({content_height: height});
+      });
+    }
   },
 
   componentDidMount() {
