@@ -18,6 +18,7 @@ var Accordion = React.createClass({
     animationDuration: React.PropTypes.number,
     content: React.PropTypes.element.isRequired,
     easing: React.PropTypes.string,
+    expanded: React.PropTypes.bool,
     header: React.PropTypes.element.isRequired,
     onPress: React.PropTypes.func,
     underlayColor: React.PropTypes.string,
@@ -29,6 +30,7 @@ var Accordion = React.createClass({
       activeOpacity: 1,
       animationDuration: 300,
       easing: 'linear',
+      expanded: false,
       underlayColor: '#000',
       style: {}
     };
@@ -72,7 +74,10 @@ var Accordion = React.createClass({
     if (this.refs.AccordionContent) {
       this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
         // Sets content height in state
-        this.setState({content_height: height});
+        this.setState({
+          height: this.props.expanded ? height : 0,
+          content_height: height
+        });
       });
     }
   },
