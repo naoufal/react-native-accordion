@@ -1,6 +1,6 @@
 {
   "name": "react-native-accordion",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "An Accordion Component for React Native",
   "main": "index.ios.js",
   "scripts": {
@@ -26,12 +26,5 @@
   "homepage": "https://github.com/naoufal/react-native-accordion",
   "dependencies": {
     "react-tween-state": "0.0.5"
-  },
-  "peerDependencies": {
-    "react-native": ">=0.4"
-  },
-  "jshintConfig": {
-    "esnext": true,
-    "node": true
   }
 }
