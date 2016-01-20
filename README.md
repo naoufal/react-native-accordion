@@ -74,6 +74,7 @@ The following props can be used to modify the Accordion's style and/or behaviour
 |__`animationDuration`__|_Number_|Optional|`300`|The duration of the animation.
 |__`content`__|_Element_|Required|`N/A`|The content you want hidden in the collapse accordion.
 |__`easing`__|_String_|Optional|`linear`| A tweening function from [tween-functions](https://github.com/chenglou/tween-functions).
+|__`expanded`__|_Boolean_|Optional|`false`|If the accordion is expanded by default when mounted.
 |__`header`__|_Element_|Required|`N/A`|The element that will expand the accordion when pressed.
 |__`onPress`__|_Function_|Optional|`N/A`|A function that will be called when the accordion is pressed.
 |__`underlayColor`__|_String_|Optional|`#000`|The underlay color of the [TouchableHighlight](https://facebook.github.io/react-native/docs/touchablehighlight.html).
