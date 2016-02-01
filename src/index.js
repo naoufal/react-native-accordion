@@ -112,7 +112,7 @@ var Accordion = React.createClass({
           }}
         >
           <View ref="AccordionContent">
-            {this.props.content}
+            {Platform.os === 'ios' || this.state.is_visible ? this.props.content: null}
           </View>
         </View>
       </View>
