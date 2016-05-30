@@ -86,25 +86,17 @@ var Accordion = React.createClass({
     render() {
         return (
             /*jshint ignore:start */
-            <View
-                style={{
-          overflow: 'hidden'
-        }}
-            >
+            <View style={{overflow: 'hidden'}}>
                 <TouchableHighlight
                     ref="AccordionHeader"
                     onPress={this._onPress}
                     underlayColor={this.props.underlayColor}
-                    style={this.props.style}
-                >
+                    style={this.props.style}>
                     {this.props.header}
                 </TouchableHighlight>
                 <View
                     ref="AccordionContentWrapper"
-                    style={{
-            height: this.getTweeningValue('height')
-          }}
-                >
+                    style={{height: this.getTweeningValue('height')}}>
                     <View ref="AccordionContent">
                         {this.props.content}
                     </View>
