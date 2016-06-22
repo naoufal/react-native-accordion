@@ -1,7 +1,7 @@
 'use strict';
-import React, {
+import React, { Component } from 'react';
+import {
   AppRegistry,
-  Component,
   ListView,
   NavigatorIOS,
   ScrollView,
@@ -11,7 +11,6 @@ import React, {
   TouchableHighlight,
   View
 } from 'react-native';
-
 import Accordion from 'react-native-accordion';
 import { range } from 'lodash';
 
