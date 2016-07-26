@@ -1,6 +1,8 @@
 'use strict';
 
-import React, {
+import React from 'react'
+
+import {
   ListView,
   Text,
   TouchableHighlight,
