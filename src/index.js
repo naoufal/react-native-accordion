@@ -110,8 +110,9 @@ var Accordion = React.createClass({
           style={{
             height: this.getTweeningValue('height')
           }}
+          onLayout={()=>{}}
         >
-          <View ref="AccordionContent">
+          <View ref="AccordionContent" onLayout={()=>{}>
             {this.props.content}
           </View>
         </View>
