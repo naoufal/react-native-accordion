@@ -1,5 +1,6 @@
 'use strict';
 
+
 import React, { PropTypes } from 'react';
 import tweenState from 'react-tween-state';
 
@@ -7,7 +8,8 @@ import {
   StyleSheet,
   TouchableHighlight,
   View,
-  Text
+  Text,
+  Platform
 } from 'react-native';
 
 var Accordion = React.createClass({
@@ -112,7 +114,7 @@ var Accordion = React.createClass({
           }}
         >
           <View ref="AccordionContent">
-            {this.props.content}
+            {(Platform.OS === 'ios' || this.state.is_visible) ? this.props.content : null}
           </View>
         </View>
       </View>
