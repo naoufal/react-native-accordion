@@ -82,6 +82,26 @@ var Accordion = React.createClass({
     }
   },
 
+  _resize() {
+    setTimeout(()=> {
+      if (this.refs.AccordionContent) {
+        this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
+          // Sets content height in state
+          this.setState({
+            content_height: height
+          }, ()=> {
+            this.tweenState('height', {
+              easing: tweenState.easingTypes[this.props.easing],
+              duration: 0,
+              endValue: this.state.content_height
+            });
+          });
+        });
+
+      }
+    });
+  },
+
   componentDidMount() {
     // Gets content height when component mounts
     // without setTimeout, measure returns 0 for every value.
