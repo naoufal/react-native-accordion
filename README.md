@@ -40,6 +40,11 @@ var YourComponent = React.createClass({
         <Text>Click to Expand</Text>
       </View>
     );
+    var headerOpen = (
+      <View style={...}>
+        <Text>Expanded</Text>
+      </View>
+    );
 
     var content = (
       <View style={...}>
@@ -50,7 +55,9 @@ var YourComponent = React.createClass({
     return (
       <Accordion
         header={header}
+        headerOpen={headerOpen}
         content={content}
+        styleOpen={{backgroundColor: 'red'}}
         easing="easeOutCubic"
       />
     );
@@ -76,9 +83,11 @@ The following props can be used to modify the Accordion's style and/or behaviour
 |__`easing`__|_String_|Optional|`linear`| A tweening function from [tween-functions](https://github.com/chenglou/tween-functions).
 |__`expanded`__|_Boolean_|Optional|`false`|If the accordion is expanded by default when mounted.
 |__`header`__|_Element_|Required|`N/A`|The element that will expand the accordion when pressed.
+|__`headerOpen`__|_Element_|Optional|`N/A`|The element that will be visible when the accordion is expanded.
 |__`onPress`__|_Function_|Optional|`N/A`|A function that will be called when the accordion is pressed.
 |__`underlayColor`__|_String_|Optional|`#000`|The underlay color of the [TouchableHighlight](https://facebook.github.io/react-native/docs/touchablehighlight.html).
 |__`style`__|_Object_|Optional|`{}`|The styles you want to set on the accordion element.
+|__`styleOpen`__|_Object_|Optional|`{}`|The styles you want to set on the accordion element when its expanded.
 
 ## Methods
 The following methods can be used to open and close the accordion:
