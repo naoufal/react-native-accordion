@@ -103,7 +103,7 @@ var Accordion = React.createClass({
           ref="AccordionHeader"
           onPress={this._onPress}
           underlayColor={this.props.underlayColor}
-          style={this.state.is_visible ? this.props.activeStyle : this.props.style}
+          style={this.state.is_visible ? this.props.styleOpen : this.props.style}
         >
           {this.state.is_visible && this.props.headerOpen ? this.props.headerOpen : this.props.header}
         </TouchableHighlight>
