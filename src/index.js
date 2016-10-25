@@ -81,7 +81,15 @@ var Accordion = React.createClass({
       });
     }
   },
-
+  
+  componentWillReceiveProps(nextProps) {
+    // Recalculate the height only if the Accordion is open
+    if(!this.state.is_visible)
+    {
+        setTimeout(this._getContentHeight);
+    }
+  },
+                                  
   componentDidMount() {
     // Gets content height when component mounts
     // without setTimeout, measure returns 0 for every value.
