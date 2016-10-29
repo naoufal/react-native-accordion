@@ -82,7 +82,7 @@ var Accordion = React.createClass({
     }
   },
 
-  componentWillReceiveProps(nextProps) {
+  componentWillUpdate() {
     setTimeout(this._getContentHeight);
   },
 
