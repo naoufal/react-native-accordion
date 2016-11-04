@@ -1,35 +1,31 @@
 'use strict';
 
 import React, { PropTypes } from 'react';
-import tweenState from 'react-tween-state';
-
 import {
-  StyleSheet,
   TouchableHighlight,
   View,
-  Text
+  Animated,
+  Easing
 } from 'react-native';
 
-var Accordion = React.createClass({
-  mixins: [tweenState.Mixin],
-
+const Accordion = React.createClass({
   propTypes: {
-    activeOpacity: React.PropTypes.number,
-    animationDuration: React.PropTypes.number,
-    content: React.PropTypes.element.isRequired,
-    easing: React.PropTypes.string,
-    expanded: React.PropTypes.bool,
-    header: React.PropTypes.element.isRequired,
-    onPress: React.PropTypes.func,
-    underlayColor: React.PropTypes.string,
-    style: React.PropTypes.object
+    activeOpacity: PropTypes.number,
+    animationDuration: PropTypes.number,
+    content: PropTypes.element.isRequired,
+    easing: PropTypes.func,
+    expanded: PropTypes.bool,
+    header: PropTypes.element.isRequired,
+    onPress: PropTypes.func,
+    underlayColor: PropTypes.string,
+    style: PropTypes.object
   },
 
   getDefaultProps() {
     return {
       activeOpacity: 1,
       animationDuration: 300,
-      easing: 'linear',
+      easing: Easing.linear,
       expanded: false,
       underlayColor: '#000',
       style: {}
@@ -39,7 +35,7 @@ var Accordion = React.createClass({
   getInitialState() {
     return {
       is_visible: false,
-      height: 0,
+      height: null,
       content_height: 0
     };
   },
@@ -54,12 +50,14 @@ var Accordion = React.createClass({
 
   toggle() {
     this.state.is_visible = !this.state.is_visible;
-
-    this.tweenState('height', {
-      easing: tweenState.easingTypes[this.props.easing],
-      duration: this.props.animationDuration,
-      endValue: this.state.height === 0 ? this.state.content_height : 0
-    });
+    Animated.timing(
+      this.state.height,
+      {
+        toValue: this.state.is_visible ? this.state.content_height : 0,
+        duration: this.props.animationDuration,
+        easing: this.props.easing
+      }
+    ).start();
   },
 
   _onPress() {
@@ -70,23 +68,15 @@ var Accordion = React.createClass({
     }
   },
 
-  _getContentHeight() {
-    if (this.refs.AccordionContent) {
-      this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
-        // Sets content height in state
-        this.setState({
-          height: this.props.expanded ? height : 0,
-          content_height: height
-        });
+  _getContentHeight(event) {
+    const height = event.nativeEvent.layout.height;
+    if (this.state.content_height === 0) {
+      this.setState({
+        content_height: height
       });
+      this.state.height = new Animated.Value(0);
+      this.state.height.setValue(this.props.expanded ? height : 0);
     }
-  },
-
-  componentDidMount() {
-    // Gets content height when component mounts
-    // without setTimeout, measure returns 0 for every value.
-    // See https://github.com/facebook/react-native/issues/953
-    setTimeout(this._getContentHeight);
   },
 
   render() {
@@ -105,16 +95,17 @@ var Accordion = React.createClass({
         >
           {this.props.header}
         </TouchableHighlight>
-        <View
+        <Animated.View
           ref="AccordionContentWrapper"
+          onLayout={(event) => this._getContentHeight(event)}
           style={{
-            height: this.getTweeningValue('height')
+            height: this.state.height
           }}
         >
           <View ref="AccordionContent">
             {this.props.content}
           </View>
-        </View>
+        </Animated.View>
       </View>
       /*jshint ignore:end */
     );

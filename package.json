@@ -24,7 +24,5 @@
     "url": "https://github.com/naoufal/react-native-accordion/issues"
   },
   "homepage": "https://github.com/naoufal/react-native-accordion",
-  "dependencies": {
-    "react-tween-state": "0.0.5"
-  }
+  "dependencies": {}
 }
