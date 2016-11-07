@@ -34,7 +34,7 @@ const Accordion = React.createClass({
 
   getInitialState() {
     return {
-      is_visible: false,
+      is_visible: this.props.expanded,
       height: null,
       content_height: 0
     };
