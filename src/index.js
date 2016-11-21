@@ -116,7 +116,8 @@ var Accordion = React.createClass({
         <View
           ref="AccordionContentWrapper"
           style={{
-            height: this.getTweeningValue('height')
+            height: this.getTweeningValue('height'),
+            overflow: 'scroll'
           }}
         >
           <View ref="AccordionContent">
