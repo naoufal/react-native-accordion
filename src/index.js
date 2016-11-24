@@ -89,6 +89,14 @@ var Accordion = React.createClass({
     setTimeout(this._getContentHeight);
   },
 
+  componentWillReceiveProps(nextProps) {
+    // when content prop changes, update content height
+    this.setState({
+      content: nextProps.content,
+    });
+    this._getContentHeight();
+  },
+
   render() {
     return (
       /*jshint ignore:start */
