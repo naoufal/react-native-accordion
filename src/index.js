@@ -62,7 +62,8 @@ var Accordion = React.createClass({
         this.tweenState('height', {
             easing: tweenState.easingTypes[this.props.easing],
             duration: this.props.animationDuration,
-            endValue: this.state.height === 0 ? this.state.content_height : 0
+            endValue: this.state.height === 0 ? this.state.content_height : 0,
+            onEnd: () => {this.props.onEnd && this.props.onEnd()}
         });
     },
 
