@@ -148,8 +148,9 @@ var Accordion = React.createClass({
                         height: this.getTweeningValue('height'),
                         overflow: 'scroll'
                     }}
+                    onLayout={()=>{}}
                 >
-                    <View ref="AccordionContent">
+                    <View ref="AccordionContent" onLayout={()=>{}}>
                         {this.props.content}
                     </View>
                 </View>
