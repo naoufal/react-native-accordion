@@ -75,6 +75,12 @@ var Accordion = React.createClass({
         }
     },
 
+    _onLongPress() {
+        if (this.props.onLongPress) {
+            this.props.onLongPress.call(this);
+        }
+    },
+
     _getContentHeight(onlyOpen = false) {
         if (this.refs.AccordionContent) {
             this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
@@ -138,6 +144,7 @@ var Accordion = React.createClass({
                 <TouchableHighlight
                     ref="AccordionHeader"
                     onPress={this._onPress}
+                    onLongPress={this._onLongPress}
                     underlayColor={this.props.underlayColor}
                     style={this.state.is_visible ? this.props.styleOpen : this.props.style}
                 >
