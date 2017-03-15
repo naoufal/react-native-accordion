@@ -42,7 +42,7 @@ var Accordion = React.createClass({
 
     getInitialState() {
         return {
-            is_visible: false,
+            is_visible: this.props.expanded,
             height: 0,
             content_height: 0
         };
