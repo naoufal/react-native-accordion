@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import {
   TouchableHighlight,
   View,
@@ -8,7 +8,10 @@ import {
   Easing
 } from 'react-native';
 
-const Accordion = React.createClass({
+const createReactClass = require('create-react-class');
+const PropTypes = require('prop-types');
+
+const Accordion = createReactClass({
   propTypes: {
     activeOpacity: PropTypes.number,
     animationDuration: PropTypes.number,
