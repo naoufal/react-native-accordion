@@ -9,16 +9,13 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View,
+  Easing
 } from 'react-native';
 import Accordion from 'react-native-accordion';
 import { range } from 'lodash';
 
 class AccordionExample extends Component {
-  componentDidMount() {
-    StatusBarIOS.setStyle("light-content");
-  }
-
   render() {
     return (
       <NavigatorIOS
@@ -93,7 +90,7 @@ const AccordionList = React.createClass({
         header={this._renderHeader()}
         content={this._renderContent()}
         duration={300}
-        easing="easeOutCubic"
+        easing={Easing.linear}
       />
     );
   }
