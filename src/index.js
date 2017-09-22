@@ -89,7 +89,7 @@ var Accordion = React.createClass({
     setTimeout(this._getContentHeight);
   },
 
-  render() {
+  render({ Header }) {
     return (
       /*jshint ignore:start */
       <View
@@ -103,7 +103,7 @@ var Accordion = React.createClass({
           underlayColor={this.props.underlayColor}
           style={this.props.style}
         >
-          {React.cloneElement(this.props.header, { isOpen: this.state.is_visible })}
+          {this.props.header({ isOpen: this.state.is_visible })}
         </TouchableHighlight>
         <View
           ref="AccordionContentWrapper"
