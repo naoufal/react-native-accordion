@@ -89,7 +89,7 @@ var Accordion = React.createClass({
     setTimeout(this._getContentHeight);
   },
 
-  render({ Header }) {
+  render() {
     return (
       /*jshint ignore:start */
       <View
