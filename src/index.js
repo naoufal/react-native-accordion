@@ -7,7 +7,8 @@ import {
   StyleSheet,
   TouchableHighlight,
   View,
-  Text
+  Text,
+  Platform
 } from 'react-native';
 
 var Accordion = React.createClass({
