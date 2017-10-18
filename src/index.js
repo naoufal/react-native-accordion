@@ -60,8 +60,10 @@ class Accordion extends Component {
 
     Animated.timing(
       this.state.height,
-      toValue: this.state.height === 0 ? this.state.content_height : 0,
-      duration: this.props.animationDuration
+      {
+        toValue: this.state.height === 0 ? this.state.content_height : 0,
+        duration: this.props.animationDuration,
+      }
     ).start();
   };
 
