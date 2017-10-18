@@ -75,7 +75,7 @@ class Accordion extends Component {
     }
   };
 
-  _getContentHeight => () {
+  _getContentHeight = () => {
     if (this.refs.AccordionContent) {
       this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
         // Sets content height in state
