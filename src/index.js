@@ -61,7 +61,7 @@ class Accordion extends Component {
     Animated.timing(
       this.state.height,
       {
-        toValue: this.state.height === 0 ? this.state.content_height : 0,
+        toValue: this.state.height._value === 0 ? this.state.content_height : 0,
         duration: this.props.animationDuration,
       }
     ).start();
@@ -80,7 +80,7 @@ class Accordion extends Component {
       this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
         // Sets content height in state
         this.setState({
-          height: this.props.expanded ? height : 0,
+          height: new Animated.Value(this.props.expanded ? height : 0),
           content_height: height
         });
       });
