@@ -1,7 +1,9 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import tweenState from 'react-tween-state';
+var createReactClass = require('create-react-class');
 
 import {
   StyleSheet,
@@ -10,19 +12,20 @@ import {
   Text
 } from 'react-native';
 
-var Accordion = React.createClass({
+var Accordion = createReactClass({
   mixins: [tweenState.Mixin],
 
   propTypes: {
-    activeOpacity: React.PropTypes.number,
-    animationDuration: React.PropTypes.number,
-    content: React.PropTypes.element.isRequired,
-    easing: React.PropTypes.string,
-    expanded: React.PropTypes.bool,
-    header: React.PropTypes.element.isRequired,
-    onPress: React.PropTypes.func,
-    underlayColor: React.PropTypes.string,
-    style: React.PropTypes.object
+    activeOpacity: PropTypes.number,
+    animationDuration: PropTypes.number,
+    content: PropTypes.element.isRequired,
+    easing: PropTypes.string,
+    expanded: PropTypes.bool,
+    header: PropTypes.element.isRequired,
+    onPress: PropTypes.func,
+    underlayColor: PropTypes.string,
+    style: PropTypes.object,
+    contentHeight: PropTypes.number.isRequired
   },
 
   getDefaultProps() {
@@ -54,11 +57,10 @@ var Accordion = React.createClass({
 
   toggle() {
     this.state.is_visible = !this.state.is_visible;
-
     this.tweenState('height', {
       easing: tweenState.easingTypes[this.props.easing],
       duration: this.props.animationDuration,
-      endValue: this.state.height === 0 ? this.state.content_height : 0
+      endValue: this.state.height === 0 ? this.props.contentHeight : 0
     });
   },
 
@@ -103,7 +105,7 @@ var Accordion = React.createClass({
           underlayColor={this.props.underlayColor}
           style={this.props.style}
         >
-          {this.props.header}
+          <View>{this.props.header}</View>
         </TouchableHighlight>
         <View
           ref="AccordionContentWrapper"
