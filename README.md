@@ -51,6 +51,7 @@ var YourComponent = React.createClass({
       <Accordion
         header={header}
         content={content}
+        contentHeight={50}
         easing="easeOutCubic"
       />
     );
