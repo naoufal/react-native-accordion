@@ -24,8 +24,5 @@
     "url": "https://github.com/naoufal/react-native-accordion/issues"
   },
   "homepage": "https://github.com/naoufal/react-native-accordion",
-  "dependencies": {
-    "create-react-class": "^15.6.3",
-    "react-tween-state": "^0.1.5"
-  }
+  "dependencies": {}
 }
