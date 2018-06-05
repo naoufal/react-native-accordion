@@ -44,14 +44,6 @@ class Accordion extends Component {
     };
   }
 
-  close = () => {
-    this.state.is_visible && this.toggle();
-  }
-
-  open = () => {
-    !this.state.is_visible && this.toggle();
-  }
-
   toggle = () => {
     this.setState({ expanded: !this.state.expanded }); 
     let initialValue = this.state.expanded ? 0 : this.state.content_height;
@@ -108,7 +100,7 @@ class Accordion extends Component {
           underlayColor={this.props.underlayColor}
           style={this.props.style}
         >
-          {this.props.header({ isOpen: this.state.expanded })}
+          {this.props.header}
         </TouchableHighlight>
         <Animated.View
           ref="AccordionContentWrapper"
