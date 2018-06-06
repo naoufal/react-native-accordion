@@ -38,7 +38,7 @@ class Accordion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: false,
+      expanded: props.expanded,
       height: new Animated.Value(0),
       content_height: 0
     };
@@ -86,6 +86,11 @@ class Accordion extends Component {
     setTimeout(this._getContentHeight);
   }
 
+  componentWillReceiveProps() {
+    this.state.height.setValue(0);
+    this.setState({expanded: this.props.expanded});
+  }
+
   render() {
     return (
       /*jshint ignore:start */
@@ -110,7 +115,7 @@ class Accordion extends Component {
           }}
         >
           <View ref="AccordionContent">
-          {(Platform.OS === 'ios' || this.state.expanded) ? this.props.content : null}
+          {this.props.content}
           </View>
         </Animated.View>
       </View>
