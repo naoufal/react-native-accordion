@@ -45,6 +45,12 @@ class Accordion extends Component {
   }
 
   toggle = () => {
+    this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
+      this.setState({
+        height: new Animated.Value(this.state.expanded ? height : 0),
+        content_height: new Animated.Value(this.state.expanded ? height : 0),
+      });
+    });
     this.setState({ expanded: !this.state.expanded }); 
     let initialValue = this.state.expanded ? 0 : this.state.content_height;
     let finalValue = this.state.expanded ? this.state.content_height : 0;
@@ -68,9 +74,7 @@ class Accordion extends Component {
 
   _getContentHeight = () => {
     if (this.refs.AccordionContent) {
-      this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
-        // Sets content height in state
-       
+      this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {       
         this.setState({
           height: new Animated.Value(this.state.expanded ? height : 0),
           content_height: height
