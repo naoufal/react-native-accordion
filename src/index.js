@@ -105,16 +105,16 @@ var Accordion = React.createClass({
         >
           {this.props.header}
         </TouchableHighlight>
-        <View
+        {this.state.is_visible && <View
           ref="AccordionContentWrapper"
           style={{
-            height: this.getTweeningValue('height')
+            height: this._getContentHeight('height')
           }}
         >
           <View ref="AccordionContent">
             {this.props.content}
           </View>
-        </View>
+        </View>}
       </View>
       /*jshint ignore:end */
     );
