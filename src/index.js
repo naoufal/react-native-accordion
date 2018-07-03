@@ -1,93 +1,102 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
-import tweenState from 'react-tween-state';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import {
-  StyleSheet,
   TouchableHighlight,
   View,
-  Text
+  Animated
 } from 'react-native';
 
-var Accordion = React.createClass({
-  mixins: [tweenState.Mixin],
+const propTypes = {
+  activeOpacity: PropTypes.number,
+  animationDuration: PropTypes.number,
+  content: PropTypes.element.isRequired,
+  easing: PropTypes.string,
+  expanded: PropTypes.bool,
+  header: PropTypes.element.isRequired,
+  onPress: PropTypes.func,
+  underlayColor: PropTypes.string,
+  style: PropTypes.object,
+  refresh: PropTypes.bool
+}
 
-  propTypes: {
-    activeOpacity: React.PropTypes.number,
-    animationDuration: React.PropTypes.number,
-    content: React.PropTypes.element.isRequired,
-    easing: React.PropTypes.string,
-    expanded: React.PropTypes.bool,
-    header: React.PropTypes.element.isRequired,
-    onPress: React.PropTypes.func,
-    underlayColor: React.PropTypes.string,
-    style: React.PropTypes.object
-  },
+const defaultProps = {
+  activeOpacity: 1,
+  animationDuration: 300,
+  easing: 'linear',
+  expanded: false,
+  underlayColor: '#000',
+  style: {},
+  refresh: false
+}
 
-  getDefaultProps() {
-    return {
-      activeOpacity: 1,
-      animationDuration: 300,
-      easing: 'linear',
-      expanded: false,
-      underlayColor: '#000',
-      style: {}
-    };
-  },
+class Accordion extends Component {
 
-  getInitialState() {
-    return {
-      is_visible: false,
-      height: 0,
+  constructor(props) {
+    super(props);
+    this.state = {
+      expanded: props.expanded,
+      height: new Animated.Value(0),
       content_height: 0
     };
-  },
+  }
 
-  close() {
-    this.state.is_visible && this.toggle();
-  },
-
-  open() {
-    !this.state.is_visible && this.toggle();
-  },
-
-  toggle() {
-    this.state.is_visible = !this.state.is_visible;
-
-    this.tweenState('height', {
-      easing: tweenState.easingTypes[this.props.easing],
-      duration: this.props.animationDuration,
-      endValue: this.state.height === 0 ? this.state.content_height : 0
+  toggle = () => {
+    this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
+      this.setState({
+        height: new Animated.Value(this.state.expanded ? height : 0),
+        content_height: new Animated.Value(this.state.expanded ? height : 0),
+      });
     });
-  },
+    this.setState({ expanded: !this.state.expanded }); 
+    let initialValue = this.state.expanded ? 0 : this.state.content_height;
+    let finalValue = this.state.expanded ? this.state.content_height : 0;
+    this.state.height.setValue(initialValue);
+    Animated.timing(
+      this.state.height,
+      {
+        toValue: finalValue,
+        duration: this.props.animationDuration,
+      }
+    ).start();
+  }
 
-  _onPress() {
+  _onPress = () => {
     this.toggle();
 
     if (this.props.onPress) {
       this.props.onPress.call(this);
     }
-  },
+  }
 
-  _getContentHeight() {
+  _getContentHeight = () => {
     if (this.refs.AccordionContent) {
-      this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {
-        // Sets content height in state
+      this.refs.AccordionContent.measure((ox, oy, width, height, px, py) => {       
         this.setState({
-          height: this.props.expanded ? height : 0,
+          height: new Animated.Value(this.state.expanded ? height : 0),
           content_height: height
         });
       });
     }
-  },
+  }
 
   componentDidMount() {
     // Gets content height when component mounts
     // without setTimeout, measure returns 0 for every value.
     // See https://github.com/facebook/react-native/issues/953
     setTimeout(this._getContentHeight);
-  },
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // Force to refresh height if your component containing the accordion does not mount every time
+    // when viewing the expandable list (e.g when you have tabs)
+    if (nextProps.refresh) {
+      this.state.height.setValue(0);
+      this.setState({expanded: this.props.expanded});
+    }
+  }
 
   render() {
     return (
@@ -105,20 +114,24 @@ var Accordion = React.createClass({
         >
           {this.props.header}
         </TouchableHighlight>
-        <View
+        <Animated.View
           ref="AccordionContentWrapper"
           style={{
-            height: this.getTweeningValue('height')
+            height: this.state.height._value,
+            overflow: 'scroll'
           }}
         >
           <View ref="AccordionContent">
-            {this.props.content}
+          {this.props.content}
           </View>
-        </View>
+        </Animated.View>
       </View>
       /*jshint ignore:end */
     );
   }
-});
+};
+
+Accordion.propTypes = propTypes;
+Accordion.defaultProps = defaultProps;
 
 module.exports = Accordion;
