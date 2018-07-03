@@ -4,12 +4,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  StyleSheet,
   TouchableHighlight,
   View,
-  Text,
-  Animated,
-  Platform
+  Animated
 } from 'react-native';
 
 const propTypes = {
@@ -21,7 +18,8 @@ const propTypes = {
   header: PropTypes.element.isRequired,
   onPress: PropTypes.func,
   underlayColor: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  refresh: PropTypes.bool
 }
 
 const defaultProps = {
@@ -30,7 +28,8 @@ const defaultProps = {
   easing: 'linear',
   expanded: false,
   underlayColor: '#000',
-  style: {}
+  style: {},
+  refresh: false
 }
 
 class Accordion extends Component {
@@ -90,9 +89,13 @@ class Accordion extends Component {
     setTimeout(this._getContentHeight);
   }
 
-  componentWillReceiveProps() {
-    this.state.height.setValue(0);
-    this.setState({expanded: this.props.expanded});
+  componentWillReceiveProps(nextProps) {
+    // Force to refresh height if your component containing the accordion does not mount every time
+    // when viewing the expandable list (e.g when you have tabs)
+    if (nextProps.refresh) {
+      this.state.height.setValue(0);
+      this.setState({expanded: this.props.expanded});
+    }
   }
 
   render() {
